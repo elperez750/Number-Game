@@ -468,7 +468,7 @@ def optional_level_one():
     if res:
         print('Nice')
     else:
-        print('Crap')
+        print('CRAP')
 
 
 
