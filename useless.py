@@ -467,7 +467,6 @@ def optional_level_one():
     res = int(input(f'Alright, pick a number between {lower_bound} and {upper_bound}'))
     if res:
         print('Nice')
-    
 
 
 
