@@ -465,10 +465,10 @@ def guess_six_hard():
 def optional_level_one():
     print(pick_optional)
     res = int(input(f'Alright, pick a number between {lower_bound} and {upper_bound}'))
-    if res:
-        print('Nice')
-    else:
-        print('CRAP')
+    if res < lower_bound or res > upper_bound:
+        print('That is not in the range. Pick again!')
+        optional_level_one()
+    
 
 
 
