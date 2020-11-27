@@ -109,7 +109,7 @@ def guess_one_easy():
             
 
 
-
+#guess two for easy
 def guess_two_easy():
     tries = 1
     #print(pick_easy)
