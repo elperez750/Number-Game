@@ -431,12 +431,13 @@ def guess_four_hard():
 
 def guess_five_hard():
     tries = 4
+    sum_guess =  lower_bound + upper_bound
     res = int(input())
     if res <1 or res > 100:
         print('That number is not in the range. Pick again.')
         guess_five_hard()
     elif res != pick_hard:
-        print(f'The number you guessed is {abs(res - pick_hard)} away from the number I am thinking of')
+        print(f'Remember the numbers you picked in the beginning? The absolute value of their sum minus the number I am thinking of is {abs(sum_guess - pick_hard)} away from my number.')
     else:
         print('You finally got it!!!!')
         tries += 1
