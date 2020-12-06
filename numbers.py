@@ -7,20 +7,8 @@ import math
 pick_easy = random.randint(1, 10)
 pick_medium = random.randint(1, 50)
 pick_hard = random.randint(1, 100)
+ratings = []
 
-
-
-print('Before we start, this is something that may or may not be helpful in the future.')
-
-lower_bound = int(input('Pick the lower bound number\n'))
-
-upper_bound = int(input('Pick the upper bound number\n'))
-
-pick_optional = random.randint(lower_bound, upper_bound)
-if upper_bound < lower_bound:
-    print('That number is smaller than the lower bound number you choosed. Pick a number bigger than that number.')
-else:
-    print('Let\'s get it!')
     
 #For responses
 yes_list = ['y', 'yes', 'yep', 'yup','yeah', 'totally','totes', 'sure', 'you bet', 'ok', 'k', 'okie dokie', 'alright', 'sounds good', 'ye']
@@ -30,7 +18,7 @@ no_list = ['n', 'no', 'naw', 'nope', 'nah', 'not this time']
 
 
 def greeting():
-    print('With that out of the way, let\'s get going!')
+    print('Hello There!')
 
 
 
@@ -146,6 +134,7 @@ def guess_two_easy():
             guess_two_easy()
 
 
+
 def guess_three_easy():
     while True:
         try:
@@ -157,7 +146,9 @@ def guess_three_easy():
                 guess_three_easy()
             elif res != pick_easy:
                 tries += 1
-                lose_easy()
+                print(f'I\'m sorry, you lost!! The number was {pick_easy}')
+                print('Try again next time!!')
+                False
             else:
                 print('You got it!!')
                 tries += 1
@@ -166,6 +157,8 @@ def guess_three_easy():
         except ValueError:
             print('That is not a number. Pick again')
             guess_three_easy()
+
+
 
 
 #create medium level
@@ -211,6 +204,7 @@ def guess_one_medium():
         except ValueError:
             print('That is not a number')
             guess_one_medium()
+
 
 
 
@@ -316,7 +310,9 @@ def guess_five_medium():
             res = int(input())
             if res != pick_medium:
                 tries += 1
-                lose_medium()
+                print(f'I\'m sorry, you lost!! The number was {pick_medium}')
+                print('Try again next time!!')
+                break
             else:
                 print('Wow. I thought you wouldn\'t get it!!')
                 tries += 1
@@ -338,7 +334,7 @@ def guess_one_hard():
                 print('Holy shit! How the fuck did you do that!! First Try!')
                 tries += 1
                 print(f'Number of attempts taken: {tries}')
-                optional()
+                winner()
             elif abs(res - pick_hard) <= 20:
                 print('You are within 20!(0-20) You are very close!')
                 print('Five lives left!')
@@ -394,7 +390,7 @@ def guess_two_hard():
                 print('You\'ve guessed it!!! Great job')
                 tries += 1
                 print(f'Number of attempts taken: {tries}')
-                optional()
+                winner()
         except ValueError:
             print('That is not a number.')
             guess_two_hard()
@@ -422,7 +418,7 @@ def guess_three_hard():
             else:
                 print('You\'ve got it!!')
                 print(f'Number of attempts taken: {tries}')
-                optional()
+                winner()
         except ValueError:
             print('That is not a number')
             guess_three_hard()
@@ -474,7 +470,7 @@ def guess_four_hard():
                 print('You\'ve got it man!')
                 tries += 1
                 print(f'Number of attempts taken: {tries}')
-                optional()
+                winner()
             else:
                 print('That number is not in the range! Pick again!')
                 guess_four_hard()
@@ -488,18 +484,20 @@ def guess_five_hard():
     while True:
         try:
             tries = 4
-            sum_guess =  lower_bound + upper_bound
+            dividing_number = random.randint(1, 10)
+            print(dividing_number)
             res = int(input())
             if res <1 or res > 100:
                 print('That number is not in the range. Pick again.')
                 guess_five_hard()
             elif res != pick_hard:
-                print(f'Remember the numbers you picked in the beginning? The absolute value of their sum minus the number I am thinking of is {abs(sum_guess - pick_hard)} away from my number.')
+                print(f'when I divide my number and a random number, I approximately get {round(pick_hard / dividing_number)}')
+                guess_six_hard()
             else:
                 print('You finally got it!!!!')
                 tries += 1
                 print(f'Number of attempts taken: {tries}')
-                optional()
+                winner()
         except ValueError:
             print('That is not a number.')
             guess_five_hard()
@@ -514,46 +512,40 @@ def guess_six_hard():
             if res < 1 or res > 100:
                 print('That number is not in the range. Pick again.')
             elif res != pick_hard:
-                lose_hard()
+                print(f'I\'m sorry, you lost!! The number was {pick_hard}')
+                print('Try again next time!!')
+                break
             else:
                 print('Wooohoo! You finally got it!')
                 tries += 1
                 print(f'number of attempts taken: {tries}')
-                optional()
+                winner()
         except ValueError:
             print('That is not a number.')
             guess_six_hard()
 
 
-#optional level
-def optional_level_one():
-    print(pick_optional)
-    res = int(input(f'Alright, pick a number between {lower_bound} and {upper_bound}'))
-    if res < lower_bound or res > upper_bound:
-        print('That is not in the range. Pick again!')
-        optional_level_one()
-    
-
 
 
 #set up losing for all levels
-def lose_easy():
-    print(f'I\'m sorry, you lost!! The number was {pick_easy}')
-    print('Try again next time!!')
+#def lose_easy():
+  #  print(f'I\'m sorry, you lost!! The number was {pick_easy}')
+ #   print('Try again next time!!')
+   
 
 
 
-
-def lose_medium():
-    print(f'I\'m sorry, you lost!! The number was {pick_medium}')
-    print('Try again next time!!')
-
-
+#def lose_medium():
+    #print(f'I\'m sorry, you lost!! The number was {pick_medium}')
+    #print('Try again next time!!')
+    
 
 
-def lose_hard():
-    print(f'I\'m sorry, you lost!! The number was {pick_hard}')
-    print('Try again next time!!')
+#def lose_hard():
+    #print(f'I\'m sorry, you lost!! The number was {pick_hard}')
+    #print('Try again next time!!')
+   
+    
 
 
 
@@ -584,16 +576,11 @@ def move_on_medium():
 
 
 
-def optional():
-    res = input(
-        'Well looks like you\'ve beaten me! But wait, remember the numbers you chose in the beginning? Those numbers will be the range. Will you play?\n')
-    if res.lower() in yes_list:
-        optional_level_one()
-    elif res.lower() in no_list:
-        print('Ok, play again soon! Great job!')
-    else:
-        print('Please provide a valid statement.')
-        optional()
+def winner():
+    res = int(input('You won!! Thanks for playing! On a scale of one to ten how would you rate this game?\n'))
+    ratings.append(res)
+    print('Ok Thank you! Play again soon!') 
+    
  
 
 
