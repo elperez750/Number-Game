@@ -1,5 +1,7 @@
 import random
-import math
+import math 
+import sys
+
 
 
 
@@ -7,16 +9,17 @@ import math
 pick_easy = random.randint(1, 10)
 pick_medium = random.randint(1, 50)
 pick_hard = random.randint(1, 100)
-ratings = []
 
     
-#For responses
+
+
+#For user responses
 yes_list = ['y', 'yes', 'yep', 'yup','yeah', 'totally','totes', 'sure', 'you bet', 'ok', 'k', 'okie dokie', 'alright', 'sounds good', 'ye']
 no_list = ['n', 'no', 'naw', 'nope', 'nah', 'not this time']
 
  
 
-
+#greeting user
 def greeting():
     print('Hello There!')
 
@@ -34,7 +37,7 @@ def intro():
         return intro()
 
 
-
+#to start
 def start():
     res = input('We will start on easy, and then work our way to hard. Are you ready?\n')
     if res.lower() in yes_list:
@@ -47,7 +50,7 @@ def start():
         start()
 
 
-
+#to move on to the next level
 def level_two():
     res = input('Okay, good job! It will only get harder from here. Are you ready?\n')
     if res.lower() in yes_list:
@@ -55,10 +58,10 @@ def level_two():
         guess_one_medium()
     elif res.lower() in no_list:
         print('Ok, bye!')
+        sys.exit()
     else:
         print('Type in a valid response')
         level_two()
-
 
 
 def level_three():
@@ -68,6 +71,7 @@ def level_three():
         guess_one_hard()
     elif res.lower() in no_list:
         print('Ok, I understand. See you!')
+        sys.exit()
     else:
         print('Please provide a valid response.')
         level_three()
@@ -106,6 +110,7 @@ def guess_one_easy():
             
 
 
+
 #guess two for easy
 def guess_two_easy():
     while True:
@@ -134,7 +139,7 @@ def guess_two_easy():
             guess_two_easy()
 
 
-
+#guess three for level one
 def guess_three_easy():
     while True:
         try:
@@ -147,8 +152,8 @@ def guess_three_easy():
             elif res != pick_easy:
                 tries += 1
                 print(f'I\'m sorry, you lost!! The number was {pick_easy}')
-                print('Try again next time!!')
-                False
+                print('play again next time!')
+                sys.exit()
             else:
                 print('You got it!!')
                 tries += 1
@@ -207,7 +212,7 @@ def guess_one_medium():
 
 
 
-
+#guess two for medium level
 def guess_two_medium():
     while True:
         try:
@@ -235,6 +240,9 @@ def guess_two_medium():
             print('That is not a number')
             guess_two_medium()
 
+
+
+
 #define hints for guess three
 hint_one = random.randint(1, 15)
 hint_two = random.randint(1, 15)
@@ -243,7 +251,7 @@ hint_two_main = pick_medium + hint_two
 
 
 
-
+#guess three for medium
 def guess_three_medium():
     while True:
         try:
@@ -278,7 +286,7 @@ def guess_three_medium():
             guess_three_medium()
 
 
-
+#guess four for medium
 def guess_four_medium():
     while True:
         try:
@@ -302,7 +310,7 @@ def guess_four_medium():
         
 
 
-
+#guess five for medium. Last guess
 def guess_five_medium():                         
     while True:
         try:
@@ -312,7 +320,7 @@ def guess_five_medium():
                 tries += 1
                 print(f'I\'m sorry, you lost!! The number was {pick_medium}')
                 print('Try again next time!!')
-                break
+                sys.exit()
             else:
                 print('Wow. I thought you wouldn\'t get it!!')
                 tries += 1
@@ -321,6 +329,7 @@ def guess_five_medium():
         except ValueError:
             print('That is not a number.')
             guess_five_medium()
+
 
 
 #Hard level
@@ -368,7 +377,7 @@ def guess_one_hard():
             guess_one_hard()
         
 
-
+#guess two for hard
 def guess_two_hard():
     while True:
         try:
@@ -396,7 +405,7 @@ def guess_two_hard():
             guess_two_hard()
 
 
-
+#guess three for hard
 def guess_three_hard():
     while True:
         try:
@@ -423,14 +432,14 @@ def guess_three_hard():
             print('That is not a number')
             guess_three_hard()
 
-
+#make hints for guess four
 hard_num_two = random.randint(1, 20)
 hard_num_two = random.randint(1, 20)
 hard_hint = pick_hard - hint_one
 hard_hint_two = pick_hard + hard_num_two
 
 
-
+#guess four for hard
 def guess_four_hard():
     while True:
         try:
@@ -480,6 +489,7 @@ def guess_four_hard():
 
 
 
+#guess five hard
 def guess_five_hard():
     while True:
         try:
@@ -504,6 +514,8 @@ def guess_five_hard():
     
 
 
+
+#guess six for hard. Last hint
 def guess_six_hard():
     while True:
         try:
@@ -512,9 +524,9 @@ def guess_six_hard():
             if res < 1 or res > 100:
                 print('That number is not in the range. Pick again.')
             elif res != pick_hard:
-                print(f'I\'m sorry, you lost!! The number was {pick_hard}')
-                print('Try again next time!!')
-                break
+                print(f'I\'m sorry. The number was {pick_hard}')
+                print('So close! Try again soon!')
+                sys.exit()
             else:
                 print('Wooohoo! You finally got it!')
                 tries += 1
@@ -524,31 +536,7 @@ def guess_six_hard():
             print('That is not a number.')
             guess_six_hard()
 
-
-
-
-#set up losing for all levels
-#def lose_easy():
-  #  print(f'I\'m sorry, you lost!! The number was {pick_easy}')
- #   print('Try again next time!!')
-   
-
-
-
-#def lose_medium():
-    #print(f'I\'m sorry, you lost!! The number was {pick_medium}')
-    #print('Try again next time!!')
     
-
-
-#def lose_hard():
-    #print(f'I\'m sorry, you lost!! The number was {pick_hard}')
-    #print('Try again next time!!')
-   
-    
-
-
-
 
 #set up moving on for all levels
 def move_on_easy():
@@ -556,10 +544,12 @@ def move_on_easy():
     if res.lower() in yes_list:
         level_two()
     elif res.lower() in no_list:
-        print('Ok, till next time!')
+        print('Ok. Have a nice day!')
+        sys.exit()
     else:
         print('Please provide a valid statement.')
         move_on_easy()
+
 
 
 def move_on_medium():
@@ -567,19 +557,18 @@ def move_on_medium():
     if res.lower() in yes_list:
         level_three()
     elif res.lower() in no_list:
-        print('Ok, till next time!')
+        print('Ok. Have a nice day!')
+        sys.exit()
     else:
         print('Please provide a valid statement.')
         move_on_medium()
 
 
 
-
-
 def winner():
-    res = int(input('You won!! Thanks for playing! On a scale of one to ten how would you rate this game?\n'))
-    ratings.append(res)
-    print('Ok Thank you! Play again soon!') 
+    print('You beat me! Impresive!')
+    print('Play again soon!')
+    sys.exit() 
     
  
 
